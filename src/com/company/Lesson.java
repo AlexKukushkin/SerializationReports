@@ -1,32 +1,14 @@
 package com.company;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class Lesson {
+public class Lesson implements Serializable{
   private final long dateTime;
   private final String topic;
   private final short roomNum;
   private final String teacher;
 
-  public Lesson(long dateTime,
-                String topic, short roomNum, String teacher) {
-    this.dateTime = dateTime;
-    this.topic = topic;
-    this.roomNum = roomNum;
-    this.teacher = teacher;
-  }
-  public long getDateTime() {
-    return dateTime;
-  }
-  public String getTopic() {
-    return topic;
-  }
-  public short getRoomNum() {
-    return roomNum;
-  }
-  public String getTeacher() {
-    return teacher;
-  }
+  String date = Long.toString(getDateTime());
 
   @Override
   public boolean equals(Object o) {
@@ -48,5 +30,34 @@ public class Lesson {
     result = 31 * result + (int) getRoomNum();
     result = 31 * result + getTeacher().hashCode();
     return result;
+  }
+
+  @Override
+  public String toString() {
+    return "date : " + date + "\n" +
+            "theme : " + topic + "\n" +
+            "office number : " + roomNum + "\n" +
+            "teacher : " + teacher + "\n" +
+            "--------------------------------\n";
+  }
+
+  public Lesson(long dateTime,
+                String topic, short roomNum, String teacher) {
+    this.dateTime = dateTime;
+    this.topic = topic;
+    this.roomNum = roomNum;
+    this.teacher = teacher;
+  }
+  public long getDateTime() {
+    return dateTime;
+  }
+  public String getTopic() {
+    return topic;
+  }
+  public short getRoomNum() {
+    return roomNum;
+  }
+  public String getTeacher() {
+    return teacher;
   }
 }

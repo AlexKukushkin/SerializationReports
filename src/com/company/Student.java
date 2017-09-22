@@ -7,33 +7,49 @@ public class Student implements Serializable{
   private String firstName;
   private String secondName;
   private String familyName;
-  private final long bdate;
+  private final String birthDay;
+
+  @Override
+  public String toString() {
+    return "id : " + num + "\n" +
+            "firstName : " + firstName + "\n" +
+            "secondName : " + secondName + "\n" +
+            "familyName : " + familyName + "\n" +
+            "birthday : " + birthDay + "\n" +
+            "--------------------------------\n";
+  }
 
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (!(o instanceof Student)) return false;
+    if (o == null || getClass() != o.getClass()) return false;
 
     Student student = (Student) o;
 
-    if (getNum() != student.getNum()) return false;
-    return getBdate() == student.getBdate();
+    if (num != student.num) return false;
+    if (!firstName.equals(student.firstName)) return false;
+    if (!secondName.equals(student.secondName)) return false;
+    if (!familyName.equals(student.familyName)) return false;
+    return birthDay.equals(student.birthDay);
   }
 
   @Override
   public int hashCode() {
-    int result = (int) getNum();
-    result = 31 * result + (int) (getBdate() ^ (getBdate() >>> 32));
+    int result = (int) num;
+    result = 31 * result + firstName.hashCode();
+    result = 31 * result + secondName.hashCode();
+    result = 31 * result + familyName.hashCode();
+    result = 31 * result + birthDay.hashCode();
     return result;
   }
 
   public Student(short num, String fName, String sName,
-                 String familyName, long bdate) {
+                 String familyName, String birthDay) {
     this.num = num;
     this.firstName = fName;
     this.secondName = sName;
     this.familyName = familyName;
-    this.bdate = bdate;
+    this.birthDay = birthDay;
   }
 
   public short getNum() { return num; }
@@ -42,8 +58,8 @@ public class Student implements Serializable{
     this.num = num;
   }
 
-  public long getBdate() {
-    return bdate;
+  public String getBirthDay() {
+    return birthDay;
   }
   public String getFirstName() {
     return firstName;

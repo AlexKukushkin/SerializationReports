@@ -47,6 +47,7 @@ public class Group implements Serializable{
   }
 
   private Set<Student> students = new HashSet<>();
+
   public void addStudent(Student student){
     students.add(student);
   }
